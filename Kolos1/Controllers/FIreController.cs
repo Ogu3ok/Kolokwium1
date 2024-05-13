@@ -23,5 +23,11 @@ public class FIreController : ControllerBase
         return Ok(fireAction);
     }
     
-    
+    [HttpDelete("{id:int}")]
+    public IActionResult DeleteFireAction(int id)
+    {
+        var affectedCount = _fireService.DeleteFireAction(id);
+        if (affectedCount == 0) return StatusCode(StatusCodes.Status400BadRequest);
+        return NoContent();
+    }
 }

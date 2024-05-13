@@ -33,4 +33,16 @@ public class FireActionRepo
         };
         return fireAction;
     }
+
+    public int DeleteFireAction(int id)
+    {
+        using var connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+        connection.Open();
+        using var command = new SqlCommand();
+        command.Connection = connection;
+        command.CommandText = "Delete from FireAction where IdFireAction = @IdFireAction";
+        command.Parameters.AddWithValue("@IdFireAction", id);
+        
+        return command.ExecuteNonQuery();
+    }
 }

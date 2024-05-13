@@ -29,4 +29,13 @@ public class FireService
         }
         return fireAction;
     }
+
+    public int DeleteFireAction(int id)
+    { 
+        FireAction action= _fireActionRepo.GetFireAction(id);
+        if (action.EndTime != null)
+            return 0;
+        int affectedCount = _fireActionRepo.DeleteFireAction(id);
+        return affectedCount;
+    }
 }
